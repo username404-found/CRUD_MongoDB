@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div>
+      <h1 style="text-align: center; margin-top: 4rem">Products</h1>
+    </div>
+
+    <div class="container p-5">
+      <table class="table table-stripped">
+        <thead class="bg-dark text-white">
+          <tr>
+            <th style="text-align: center">Id</th>
+            <th style="text-align: center">Code</th>
+            <th style="text-align: center">Name</th>
+            <th style="text-align: center">Update</th>
+            <th style="text-align: center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product : ${products}">
+            <td style="text-align: center" th:text="${product.id}"></td>
+            <td style="text-align: center" th:text="${product.code}"></td>
+            <td style="text-align: center" th:text="${product.name}"></td>
+            <td style="text-align: center">
+              <a
+                class="btn btn-primary"
+                th:href="@{/update/{id}(id=${product.id})}"
+              >
+                Update
+              </a>
+            </td>
+            <td style="text-align: center">
+              <a class="btn btn-danger" th:href="@{/{id}(id=${product.id})}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <center>
+        <a class="btn btn-dark mb-2" href="/add"> Add Product </a>
+      </center>
+    </div>
+  </body>
+</html>
